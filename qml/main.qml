@@ -64,7 +64,7 @@ ApplicationWindow {
 
     menuBar: MenuBar{
         Menu{
-            title: "&File"
+            title: qsTr("&File")
             MenuItem { text: qsTr("&New note"); onTriggered: notesModel.addNote(notebooksView.currentNotebookId, qsTr("New note"), "") }
             MenuItem { text: qsTr("New no&tebook"); onTriggered: createNotebookDialog.visible = true; }
             MenuItem { text: qsTr("&Delete note"); onTriggered: deleteNoteDialog.visible = true; }

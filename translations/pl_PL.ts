@@ -28,6 +28,11 @@
         <translation>N&amp;owy notatnik</translation>
     </message>
     <message>
+        <location filename="../qml/main.qml" line="67"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/main.qml" line="68"/>
         <location filename="../qml/main.qml" line="179"/>
         <source>New note</source>
