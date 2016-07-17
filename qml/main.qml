@@ -25,7 +25,7 @@ ApplicationWindow {
             property string themeName: "white"
             property color appBackground: "white"
             property color listTextColor: "black"
-            property color listHighlightColor: "#c6dfdf"
+            property color listHighlightColor: "#d6dfdf"
             property color listHighlightBorderColor: "grey"
             property color calendarDayHighlight: "lightblue"
             property int listHighlightBorderWidth: 1
