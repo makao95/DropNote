@@ -36,14 +36,14 @@ ApplicationWindow {
         Item{
             id: blackTheme
             property string themeName: "black"
-            property string appBackground: "#111111"
-            property string listTextColor: "white"
-            property string listHighlightColor: "#313131"
-            property string listHighlightBorderColor: "#626262"
-            property string calendarDayHighlight: "lightblue"
+            property color appBackground: "#111111"
+            property color listTextColor: "white"
+            property color listHighlightColor: "#313131"
+            property color listHighlightBorderColor: "#626262"
+            property color calendarDayHighlight: "lightblue"
             property int listHighlightBorderWidth: 1
-            property string textAreaBackgroundColor: "#111111"
-            property string textAreaTextColor: "#dddddd"
+            property color textAreaBackgroundColor: "#111111"
+            property color textAreaTextColor: "#dddddd"
         }
 
         Component.onCompleted: {
