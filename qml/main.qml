@@ -63,7 +63,7 @@ ApplicationWindow {
             //apply theme from settings
             if (settings.theme == "black"){
                 themes.current = blackTheme;
-            }else if (settings.theme == "lightRed"){
+            }else if (settings.theme == "white"){
                 themes.current = whiteTheme;
             }else{
                 themes.current = lightRedTheme;
