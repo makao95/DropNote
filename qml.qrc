@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/FontSizesModel.qml</file>
+        <file>qml/images/add.png</file>
+        <file>qml/images/calendar.png</file>
+        <file>qml/images/notebook.png</file>
+        <file>qml/images/search.png</file>
+        <file>qml/images/tags.png</file>
+        <file>qml/images/accessories-text-editor.png</file>
+        <file>qml/images/office-calendar.png</file>
+        <file>qml/images/list-add.png</file>
+        <file>qml/images/system-search.png</file>
+    </qresource>
+</RCC>
