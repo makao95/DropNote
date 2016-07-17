@@ -46,12 +46,27 @@ ApplicationWindow {
             property color textAreaTextColor: "#dddddd"
         }
 
+        Item{
+            id: lightRedTheme
+            property string themeName: "white"
+            property color appBackground: "white"
+            property color listTextColor: "black"
+            property color listHighlightColor: "#f6dfdf"
+            property color listHighlightBorderColor: "grey"
+            property color calendarDayHighlight: "lightblue"
+            property int listHighlightBorderWidth: 1
+            property color textAreaBackgroundColor: "#f6dfdf"
+            property color textAreaTextColor: "black"
+        }
+
         Component.onCompleted: {
             //apply theme from settings
             if (settings.theme == "black"){
                 themes.current = blackTheme;
-            }else{
+            }else if (settings.theme == "lightRed"){
                 themes.current = whiteTheme;
+            }else{
+                themes.current = lightRedTheme;
             }
         }
     }
@@ -80,6 +95,7 @@ ApplicationWindow {
                 title: qsTr("&Themes")
                 MenuItem { text: qsTr("&White"); onTriggered: { themes.current = whiteTheme; settings.theme = "white"; } }
                 MenuItem { text: qsTr("&Black"); onTriggered: { themes.current = blackTheme; settings.theme = "black"; }}
+                MenuItem { text: qsTr("&Light red"); onTriggered: { themes.current = lightRedTheme; settings.theme = "lightRed"; }}
             }
 
         }
