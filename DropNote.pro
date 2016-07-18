@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick webview sql widgets
+QT += qml quick sql widgets
 CONFIG += c++11
 RC_ICONS = icon.ico
 
