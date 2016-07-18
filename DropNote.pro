@@ -4,7 +4,7 @@ QT += qml quick sql widgets
 CONFIG += c++11
 RC_ICONS = icon.ico
 
-SOURCES += main.cpp src/SqlLiteDatabase.cpp src/NotebooksModel.cpp ext/sqlite3.c src/NotesModel.cpp src/Settings.cpp
+SOURCES += main.cpp src/SqlLiteDatabase.cpp src/NotebooksModel.cpp src/NotesModel.cpp src/Settings.cpp
 HEADERS += include/SqlLiteDatabase.h include/NotesModel.h include/NotebooksModel.h include/Settings.h
 
 INCLUDEPATH += $$PWD/include
