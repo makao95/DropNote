@@ -4,6 +4,9 @@
 *.o
 *.obj
 
+# Qmake user files
+*.pro.user
+
 # Precompiled Headers
 *.gch
 *.pch
@@ -28,5 +31,5 @@
 *.out
 *.app
 
-#Compiled translation files
+# Compiled translation files
 *.qm
