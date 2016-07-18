@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
 
     QSqlDatabase *database = new QSqlDatabase();
     *database = QSqlDatabase::addDatabase("QSQLITE", "localdatabase");
-    database->setDatabaseName("forevernote.db");
+    database->setDatabaseName("dropnote.db");
 
     NotesModel notesModel(&app, *database);
     NotebooksModel notebooksModel(&app, *database);
