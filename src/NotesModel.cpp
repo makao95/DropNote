@@ -21,7 +21,7 @@ NotesModel::NotesModel(QObject* parent, QSqlDatabase& db):QSqlQueryModel(parent)
     db = QSqlDatabase::database("localdatabase");
 
     if (!db.isOpen())
-        qInfo() << "WHAT?";
+        qDebug() << "WHAT?";
     QSqlQuery caseSensitivityQuery("PRAGMA case_sensitive_like=OFF", db);
     caseSensitivityQuery.exec();
     prepareDatabase();
