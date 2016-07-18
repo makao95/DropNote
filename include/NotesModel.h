@@ -1,6 +1,6 @@
 #pragma once
 #include <QSqlQueryModel>
-#include <QDAte>
+#include <QDate>
 #include <QMutex>
 
 class NotesModel : public QSqlQueryModel{
