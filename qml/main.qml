@@ -10,6 +10,7 @@ ApplicationWindow {
     id: mainApp
     visible: true
     width: 800
+    width: 900
     height: 900
     style: ApplicationWindowStyle {
         background: Rectangle {
@@ -17,6 +18,27 @@ ApplicationWindow {
             color: themes.current.appBackground
         }
     }
+
+    Shortcut {
+        sequence: StandardKey.Save
+        context: Qt.ApplicationShortcut
+        onActivated: saveCurrentNote();
+    }
+
+    Shortcut {
+        sequence: StandardKey.Save
+        context: Qt.ApplicationShortcut
+        onActivated: { saveCurrentNote(); Qt.quit(); }
+    }
+
+    Shortcut {
+        sequence: StandardKey.New
+        context: Qt.ApplicationShortcut
+        onActivated: notesModel.addNote(notebooksView.currentNotebookId, qsTr("New note"), "");
+    }
+
+
+
     Item{
         id: themes
         property Item current: Item{}
@@ -26,6 +48,7 @@ ApplicationWindow {
             property color appBackground: "white"
             property color listTextColor: "black"
             property color listHighlightColor: "#c6dfdf"
+            property color listHighlightColor: "#d6dfdf"
             property color listHighlightBorderColor: "grey"
             property color calendarDayHighlight: "lightblue"
             property int listHighlightBorderWidth: 1
@@ -46,12 +69,28 @@ ApplicationWindow {
             property color textAreaTextColor: "#dddddd"
         }
 
+        Item{
+            id: lightRedTheme
+            property string themeName: "white"
+            property color appBackground: "white"
+            property color listTextColor: "black"
+            property color listHighlightColor: "#f6dfdf"
+            property color listHighlightBorderColor: "grey"
+            property color calendarDayHighlight: "lightblue"
+            property int listHighlightBorderWidth: 1
+            property color textAreaBackgroundColor: "#f6dfdf"
+            property color textAreaTextColor: "black"
+        }
+
         Component.onCompleted: {
             //apply theme from settings
             if (settings.theme == "black"){
                 themes.current = blackTheme;
             }else{
+            }else if (settings.theme == "white"){
                 themes.current = whiteTheme;
+            }else{
+                themes.current = lightRedTheme;
             }
         }
     }
@@ -75,11 +114,14 @@ ApplicationWindow {
             title: qsTr("View")
             MenuItem { text: "&Show sidebar"; checkable: true; checked: true; onTriggered: leftSidebar.visible = checked;}
             MenuItem { text: "&Fullscreen"; checkable: true; checked: false; onTriggered: {
+            MenuItem { text: qsTr("&Show sidebar"); checkable: true; checked: true; onTriggered: leftSidebar.visible = checked;}
+            MenuItem { text: qsTr("&Fullscreen"); checkable: true; checked: false; onTriggered: {
                     checked ? mainApp.visibility = "FullScreen" : mainApp.visibility = "Windowed" } }
             Menu {
                 title: qsTr("&Themes")
                 MenuItem { text: qsTr("&White"); onTriggered: { themes.current = whiteTheme; settings.theme = "white"; } }
                 MenuItem { text: qsTr("&Black"); onTriggered: { themes.current = blackTheme; settings.theme = "black"; }}
+                MenuItem { text: qsTr("&Light red"); onTriggered: { themes.current = lightRedTheme; settings.theme = "lightRed"; }}
             }
 
         }
