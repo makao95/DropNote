@@ -1,4 +1,4 @@
-# DropNote
+# DropNote [![Build Status](https://travis-ci.org/makao95/DropNote.svg?branch=master)](https://travis-ci.org/makao95/DropNote)
 Simple cross-platform note taking app created with Qt and QML. Ideal for journal and text-based notes. Some of it's features:
 - themes (including dark one)
 - local database (SQLite)
