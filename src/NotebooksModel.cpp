@@ -103,8 +103,8 @@ int NotebooksModel::addNotebook(int parent_notebook, QString name){
     query.prepare("INSERT INTO notebooks VALUES(NULL, :name, :parent)");
     query.bindValue(":name", name);
     query.bindValue(":parent", parent_notebook);
-    query.exec();
-    qInfo() << query.lastError();
+    if(!query.exec())
+        qInfo() << query.lastError();
     refresh();
     return 0; //TODO return record id
 }
