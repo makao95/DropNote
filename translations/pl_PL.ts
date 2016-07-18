@@ -119,5 +119,10 @@
         <source>Are you sure that you want to delete this note? There is no going back</source>
         <translation>Na pewno chcesz usunąć tą notatkę? Nie ma możliwości cofnięcia tej operacji.</translation>
     </message>
+    <message>
+        <location filename="../qml/main.qml" line="298"/>
+        <source>Search</source>
+        <translation>Szukaj</translation>
+    </message>
 </context>
 </TS>

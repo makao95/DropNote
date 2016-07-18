@@ -295,7 +295,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 visible: false
                 TextField { id: searchField; width:parent.width-40; Keys.onReturnPressed: notesModel.setSearch(searchField.text); }
-                Button { text: "Search"; width: 40; onClicked: notesModel.setSearch(searchField.text)}
+                Button { text: qsTr("Search"); width: 40; onClicked: notesModel.setSearch(searchField.text)}
             }
 
 
