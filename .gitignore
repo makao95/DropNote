@@ -7,6 +7,9 @@
 # Qmake user files
 *.pro.user
 
+# Autosave
+*.autosave
+
 # Precompiled Headers
 *.gch
 *.pch
