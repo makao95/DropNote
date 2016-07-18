@@ -81,7 +81,7 @@ bool NotesModel::doesDayHaveNote(QDate date){
     query.prepare("SELECT id FROM notes WHERE DATE(created)=:date");
     query.bindValue(":date", date);
     if(!query.exec())
-        qInfo() << query.lastError().text();
+        qDebug() << query.lastError().text();
     return query.next();
 }
 
@@ -93,7 +93,7 @@ void NotesModel::update(int id, QString title, QString text){
     query.bindValue(":text", text);
     query.bindValue(":id", id);
     if (!query.exec())
-        qInfo() << query.lastError().text();
+        qDebug() << query.lastError().text();
     refresh();
 }
 
@@ -105,7 +105,7 @@ int NotesModel::addNote(int notebook_id, QString title, QString text){
     query.bindValue(":title", title);
     query.bindValue(":text_data", text);
     if(!query.exec())
-        qInfo() << sqlite::getLastExecutedQuery(query);
+        qDebug() << sqlite::getLastExecutedQuery(query);
     refresh();
     return 0;
 }

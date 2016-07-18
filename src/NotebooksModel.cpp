@@ -17,8 +17,6 @@ const char* NotebooksModel::SQL_SELECT =
 
 NotebooksModel::NotebooksModel(QObject* parent, QSqlDatabase& db):QSqlQueryModel(parent), db(db){
     db = QSqlDatabase::database("localdatabase");
-    if (!db.isOpen())
-        qInfo() << "";
     QSqlQuery caseSensitivityQuery("PRAGMA case_sensitive_like=OFF", db);
     caseSensitivityQuery.exec();
     prepareDatabase();
@@ -83,7 +81,7 @@ bool NotebooksModel::doesDayHaveNote(int id, QDate date){
     query.bindValue(":date", date);
     query.bindValue(":id", id);
     if(!query.exec())
-        qInfo() << query.lastError().text();
+        qDebug() << query.lastError().text();
     return query.next();
 }
 
@@ -94,7 +92,7 @@ void NotebooksModel::update(int id, QString title){
     query.bindValue(":title", title);
     query.bindValue(":id", id);
     if (!query.exec())
-        qInfo() << query.lastError().text();
+        qDebug() << query.lastError().text();
     refresh();
 }
 
@@ -104,7 +102,7 @@ int NotebooksModel::addNotebook(int parent_notebook, QString name){
     query.bindValue(":name", name);
     query.bindValue(":parent", parent_notebook);
     if(!query.exec())
-        qInfo() << query.lastError();
+        qDebug() << query.lastError();
     refresh();
     return 0; //TODO return record id
 }
@@ -130,9 +128,9 @@ int NotebooksModel::addNotebook(QString parent_name, QString name){
     if (query.next())
         return addNotebook(query.value(0).toInt(), name);
     else{
-        qInfo() << "ERROR";
-        qInfo() << query.lastError();
-        qInfo() << sqlite::getLastExecutedQuery(query);
+        qDebug() << "ERROR";
+        qDebug() << query.lastError();
+        qDebug() << sqlite::getLastExecutedQuery(query);
         return 0;
     }
 }
