@@ -10,7 +10,6 @@ ApplicationWindow {
     id: mainApp
     visible: true
     width: 800
-    width: 900
     height: 900
     style: ApplicationWindowStyle {
         background: Rectangle {
