@@ -17,6 +17,27 @@ ApplicationWindow {
             color: themes.current.appBackground
         }
     }
+
+    Shortcut {
+        sequence: StandardKey.Save
+        context: Qt.ApplicationShortcut
+        onActivated: saveCurrentNote();
+    }
+
+    Shortcut {
+        sequence: StandardKey.Save
+        context: Qt.ApplicationShortcut
+        onActivated: { saveCurrentNote(); Qt.quit(); }
+    }
+
+    Shortcut {
+        sequence: StandardKey.New
+        context: Qt.ApplicationShortcut
+        onActivated: notesModel.addNote(notebooksView.currentNotebookId, qsTr("New note"), "");
+    }
+
+
+
     Item{
         id: themes
         property Item current: Item{}
