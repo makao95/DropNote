@@ -10,7 +10,6 @@ ApplicationWindow {
     id: mainApp
     visible: true
     width: 800
-    width: 900
     height: 900
     style: ApplicationWindowStyle {
         background: Rectangle {
@@ -47,7 +46,6 @@ ApplicationWindow {
             property string themeName: "white"
             property color appBackground: "white"
             property color listTextColor: "black"
-            property color listHighlightColor: "#c6dfdf"
             property color listHighlightColor: "#d6dfdf"
             property color listHighlightBorderColor: "grey"
             property color calendarDayHighlight: "lightblue"
@@ -86,7 +84,6 @@ ApplicationWindow {
             //apply theme from settings
             if (settings.theme == "black"){
                 themes.current = blackTheme;
-            }else{
             }else if (settings.theme == "white"){
                 themes.current = whiteTheme;
             }else{
@@ -112,8 +109,6 @@ ApplicationWindow {
         }
         Menu{
             title: qsTr("View")
-            MenuItem { text: "&Show sidebar"; checkable: true; checked: true; onTriggered: leftSidebar.visible = checked;}
-            MenuItem { text: "&Fullscreen"; checkable: true; checked: false; onTriggered: {
             MenuItem { text: qsTr("&Show sidebar"); checkable: true; checked: true; onTriggered: leftSidebar.visible = checked;}
             MenuItem { text: qsTr("&Fullscreen"); checkable: true; checked: false; onTriggered: {
                     checked ? mainApp.visibility = "FullScreen" : mainApp.visibility = "Windowed" } }
