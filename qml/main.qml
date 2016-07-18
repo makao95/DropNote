@@ -79,7 +79,7 @@ ApplicationWindow {
 
     menuBar: MenuBar{
         Menu{
-            title: "&File"
+            title: qsTr("&File")
             MenuItem { text: qsTr("&New note"); onTriggered: notesModel.addNote(notebooksView.currentNotebookId, qsTr("New note"), "") }
             MenuItem { text: qsTr("New no&tebook"); onTriggered: createNotebookDialog.visible = true; }
             MenuItem { text: qsTr("&Delete note"); onTriggered: deleteNoteDialog.visible = true; }
@@ -88,8 +88,8 @@ ApplicationWindow {
         }
         Menu{
             title: qsTr("View")
-            MenuItem { text: "&Show sidebar"; checkable: true; checked: true; onTriggered: leftSidebar.visible = checked;}
-            MenuItem { text: "&Fullscreen"; checkable: true; checked: false; onTriggered: {
+            MenuItem { text: qsTr("&Show sidebar"); checkable: true; checked: true; onTriggered: leftSidebar.visible = checked;}
+            MenuItem { text: qsTr("&Fullscreen"); checkable: true; checked: false; onTriggered: {
                     checked ? mainApp.visibility = "FullScreen" : mainApp.visibility = "Windowed" } }
             Menu {
                 title: qsTr("&Themes")
