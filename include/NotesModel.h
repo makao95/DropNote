@@ -36,18 +36,3 @@ class NotesModel : public QSqlQueryModel{
         QSqlDatabase db;
         QString search;
 };
-
-//const char* NotesModel::COLUMN_NAMES[] = {
-//    "id",
-//    "title",
-//    "text",
-//    "created",
-//    "edited",
-////    NULL
-//};
-
-//const char* NotesModel::SQL_SELECT =
-//    "SELECT notes.id, notes.title, notes.text, notes.created, notes.edited"
-//    " FROM notes";
-////    " JOIN artists ON albums.artistid = artists.id";
-
