@@ -125,7 +125,7 @@ ApplicationWindow {
         id: createNotebookDialog
         visible: false
         title: qsTr("New notebook")
-        onAccepted: notebooksModel.addNotebook(newNotebookParent.currentText, newNotebookNameField.text)
+        onAccepted: notebooksModel.addNotebook(0, newNotebookNameField.text)
 
         RowLayout{
             width: parent.width
@@ -135,12 +135,6 @@ ApplicationWindow {
                 id: newNotebookNameField
                 width: parent.width
                 height: 20
-            }
-            ComboBox{
-                id: newNotebookParent
-                property int parentNotebookId: 0
-                model: notebooksModel
-                textRole: "name"
             }
         }
     }
