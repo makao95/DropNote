@@ -5,10 +5,12 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.0
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
+import QtQml 2.2
+
 
 ApplicationWindow {
     id: mainApp
-    visible: true
+    visible: false
     width: 800
     height: 900
     style: ApplicationWindowStyle {
@@ -36,6 +38,100 @@ ApplicationWindow {
         onActivated: notesModel.addNote(notebooksView.currentNotebookId, qsTr("New note"), "");
     }
 
+    Dialog{
+        id: passwordDialog
+        visible: true;
+        title: qsTr("Password")
+        standardButtons: StandardButton.Ok
+        RowLayout{
+            anchors.fill: parent
+            Text{ text: qsTr("Password: ") }
+            TextField{
+                id: password
+                focus: true
+                Layout.fillWidth: true
+                Layout.minimumHeight: 10
+                echoMode: TextInput.Password
+            }
+        }
+        onAccepted: {
+            if(settings.checkPassword(password.text)){
+                mainApp.visible = true;
+            }else{
+                wrongPasswordDialog.visible = true;
+            }
+        }
+        Component.onCompleted: {
+            password.forceActiveFocus()
+            if(settings.hasPassword === false){
+                passwordDialog.visible = false;
+                mainApp.visible = true;
+            }
+        }
+        onVisibleChanged: password.forceActiveFocus()
+    }
+    MessageDialog {
+        id: wrongPasswordDialog
+        visible: false
+        title: qsTr("Wrong password")
+        text: qsTr("Wrong password. Try again")
+        onRejected: passwordDialog.visible = true
+        onAccepted: {
+            passwordDialog.open();
+            password.text = ""
+        }
+    }
+
+    Dialog{
+        id: setPasswordDialog
+        visible: false
+        title: qsTr("Set password")
+        standardButtons: StandardButton.Ok
+        ColumnLayout{
+            anchors.fill: parent
+            RowLayout{
+
+
+                Text { text: qsTr("Password: ") }
+                TextField {
+                    id: passwordField
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: 10
+                    echoMode: TextInput.Password
+                    Keys.onReleased: {
+                        if (passwordField.text === confirmPasswordField.text){
+                            passwordMatch.text = qsTr("Ok. Passwords are the same")
+                            setPasswordDialog.standardButtons = StandardButton.Ok
+                        }else{
+                            passwordMatch.text = qsTr("Passwords do not match");
+                            setPasswordDialog.standardButtons = StandardButton.Cancel;
+                        }
+                    }
+                }
+            }
+            RowLayout{
+                Text { text: qsTr("Confirm password: ")}
+                TextField {
+                    id: confirmPasswordField
+                    Layout.fillWidth: true;
+                    Layout.minimumHeight: 10
+                    echoMode: TextInput.Password
+                    Keys.onReleased: {
+                        if (passwordField.text === confirmPasswordField.text){
+                            passwordMatch.text = qsTr("Ok. Passwords are the same")
+                            setPasswordDialog.standardButtons = StandardButton.Ok
+                        }else{
+                            passwordMatch.text = qsTr("Passwords do not match")
+                            setPasswordDialog.standardButtons = StandardButton.Cancel;
+                        }
+                    }
+                }
+            }
+            Text {id: passwordMatch }
+        }
+        onAccepted: settings.setPassword(passwordField.text)
+        Component.onCompleted: passwordField.forceActiveFocus()
+    }
 
 
     Item{

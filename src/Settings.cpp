@@ -5,8 +5,9 @@
 #include <QPair>
 #include <QDebug>
 #include <QSqlError>
+#include <QCryptographicHash>
 
-Settings::Settings(QSqlDatabase *db):db(db){
+Settings::Settings(QSqlDatabase *db):db(db), salt("714845"){
     prepareDatabase();
 }
 
@@ -19,6 +20,7 @@ void Settings::prepareDatabase(){
     defaults.push_back(qMakePair(QString("fontSize"), QString("11")));
     defaults.push_back(qMakePair(QString("lastNoteId"), QString("0")));
     defaults.push_back(qMakePair(QString("theme"), QString("white")));
+    defaults.push_back(qMakePair(QString("password"), QString("")));
     for (auto&& v : defaults){
         QSqlQuery selectQuery(*db);
         selectQuery.prepare("SELECT name FROM settings WHERE name = ?");
@@ -81,4 +83,32 @@ QString Settings::getTheme(){
 
 void Settings::setTheme(QString t){
     setValue("theme", t);
+}
+
+bool Settings::checkPassword(QString p){
+    QCryptographicHash hash(QCryptographicHash::Sha256);
+    hash.addData(salt.toUtf8());
+    hash.addData(p.toUtf8());
+    if (QString(hash.result().toHex()) == getValueOf("password"))
+        return true;
+    else
+        return false;
+}
+
+bool Settings::hasPassword(){
+    if (getValueOf("password").length() > 0){
+        if (checkPassword(""))
+            return false;
+        else
+            return true;
+    }else{
+        return false;
+    }
+}
+
+void Settings::setPassword(QString p){
+    QCryptographicHash hash(QCryptographicHash::Sha256);
+    hash.addData(salt.toUtf8());
+    hash.addData(p.toUtf8());
+    setValue("password",QString(hash.result().toHex()));
 }

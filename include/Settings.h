@@ -11,6 +11,7 @@ public:
     Q_PROPERTY(QString fontFamily READ getFontFamily WRITE setFontFamily)
     Q_PROPERTY(int fontSize READ getFontSize WRITE setFontSize)
     Q_PROPERTY(QString theme READ getTheme WRITE setTheme)
+    Q_PROPERTY(bool hasPassword READ hasPassword NOTIFY hasPasswordChanged)
 //    Q_PROPERTY(int lastNoteId READ getLastNoteId WRITE setLastNoteId)
 
     QString getFontFamily();
@@ -22,6 +23,15 @@ public:
     QString getTheme();
     void setTheme(QString t);
 
+    Q_INVOKABLE bool checkPassword(QString p);
+    bool hasPassword();
+    Q_INVOKABLE void setPassword(QString p);
+
+signals:
+    void fontFamilyChanged();
+    void hasPasswordChanged();
+
+
 //    int getLastNoteId();
 //    void setLastNoteId();
 
@@ -30,4 +40,5 @@ private:
     void prepareDatabase();
     QString getValueOf(QString name);
 	void setValue(QString name, QVariant value);
+    QString salt;
 };
