@@ -505,23 +505,9 @@ ApplicationWindow {
                     }
                 }
             }
-            Row{
-                property string chosenFontFamily: fontSelectBox.currentText
-                id:toolbar
-
-                Button { text: "Save"; onClicked: {notesModel.update(notesView.currentNoteId, noteTitle.text, noteView.text); }}
-                Button { text: "Insert image" }
-                ComboBox { id: fontSelectBox; width: 75; model: Qt.fontFamilies(); Component.onCompleted:{ currentIndex =  find(settings.fontFamily)}
-                    onActivated: settings.fontFamily = model[index]}
-                ComboBox { id: fontSizeSelectBox; width: 75; model: FontSizesModel{}
-                    onActivated: noteView.font.pointSize = currentText; }
-
-            }
-            TextArea{
         TextArea{
                 id: noteView
                 property bool needSaving: false
-                font.family: fontSelectBox.currentText
                 font.family: settings.fontFamily
                 font.pointSize: 14
                 text: notesView.currentNoteText
