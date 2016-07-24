@@ -8,7 +8,7 @@ class Settings : public QObject{
 public:
     Settings(QSqlDatabase* db);
 
-    Q_PROPERTY(QString fontFamily READ getFontFamily WRITE setFontFamily)
+    Q_PROPERTY(QString fontFamily READ getFontFamily WRITE setFontFamily NOTIFY fontFamilyChanged)
     Q_PROPERTY(int fontSize READ getFontSize WRITE setFontSize)
     Q_PROPERTY(QString theme READ getTheme WRITE setTheme)
     Q_PROPERTY(bool hasPassword READ hasPassword NOTIFY hasPasswordChanged)
