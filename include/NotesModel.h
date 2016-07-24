@@ -7,6 +7,7 @@ class NotesModel : public QSqlQueryModel{
     Q_OBJECT
     Q_PROPERTY(int currentId MEMBER currentId)
     Q_PROPERTY(int currentNotebookId READ getCurrentNotebook WRITE setCurrentNotebook)
+    Q_PROPERTY(bool sortDescending READ getSortDescending WRITE setSortDescending NOTIFY sortDescendingChanged)
    public:
        explicit NotesModel(QObject *parent, QSqlDatabase& db);
        void refresh();
@@ -20,7 +21,11 @@ class NotesModel : public QSqlQueryModel{
 
        void setCurrentNotebook(int id);
        int getCurrentNotebook();
+
+       void setSortDescending(bool b);
+       bool getSortDescending();
    signals:
+       void sortDescendingChanged();
 
    public slots:
 
@@ -35,4 +40,5 @@ class NotesModel : public QSqlQueryModel{
         int currentNotebook;
         QSqlDatabase db;
         QString search;
+        bool sortDescending;
 };

@@ -208,6 +208,7 @@ ApplicationWindow {
             MenuItem { text: qsTr("&Show sidebar"); checkable: true; checked: true; onTriggered: leftSidebar.visible = checked;}
             MenuItem { text: qsTr("&Fullscreen"); checkable: true; checked: false; onTriggered: {
                     checked ? mainApp.visibility = "FullScreen" : mainApp.visibility = "Windowed" } }
+            MenuItem { text: qsTr("S&ort by date descending"); checkable: true; checked: notesModel.sortDescending; onTriggered: notesModel.sortDescending = checked }
             Menu {
                 title: qsTr("&Themes")
                 MenuItem { text: qsTr("&White"); onTriggered: { themes.current = whiteTheme; settings.theme = "white"; } }

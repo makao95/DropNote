@@ -59,11 +59,13 @@ QVariant NotesModel::data(const QModelIndex &index, int role) const{
 
 void NotesModel::refresh(){
     auto db = QSqlDatabase::database("localdatabase");
+    QString order;
+    sortDescending ? order = "DESC" : order = "ASC";
     if (currentNotebook == 0)
-        this->setQuery(SQL_SELECT, db);
+        this->setQuery(SQL_SELECT + QString(" ORDER BY created ") + order, db);
     else{
         QSqlQuery query(db);
-        query.prepare("SELECT id, title, text_data, created, edited FROM notes WHERE notebook_id=:notebook");
+        query.prepare("SELECT id, title, text_data, created, edited FROM notes WHERE notebook_id=:notebook ORDER BY created " + order);
         query.bindValue(":notebook", currentNotebook);
         query.exec();
         this->setQuery(query);
@@ -137,4 +139,13 @@ void NotesModel::setCurrentNotebook(int id){
 
 int NotesModel::getCurrentNotebook(){
     return currentNotebook;
+}
+
+void NotesModel::setSortDescending(bool b){
+    sortDescending = b;
+    refresh();
+}
+
+bool NotesModel::getSortDescending(){
+    return sortDescending;
 }
