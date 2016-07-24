@@ -215,7 +215,41 @@ ApplicationWindow {
                 MenuItem { text: qsTr("&Black"); onTriggered: { themes.current = blackTheme; settings.theme = "black"; }}
                 MenuItem { text: qsTr("&Light red"); onTriggered: { themes.current = lightRedTheme; settings.theme = "lightRed"; }}
             }
+            Menu {
+                id: fontMenu
+                title: qsTr("Font")
+                Instantiator {
+                    id: fontMenuInstantiator
+                    model: Qt.fontFamilies()
+                    MenuItem {
+                        text: modelData
+                        checkable: true;
+                        //ugly, should be resolved somehow by property binding
+                        Component.onCompleted: {
+                            if (settings.fontFamily == modelData){
+                                checked = true;
+                            }else{
+                                checked = false;
+                            }
+                        }
+                        onTriggered: {
+                            noteView.font.family = text;
+                            settings.fontFamily = text;
+                            for(var i=0; i<fontMenuInstantiator.count; i++){
+                                if(settings.fontFamily != fontMenuInstantiator.objectAt(i).text){
+                                    fontMenuInstantiator.objectAt(i).checked = false;
+                                }
+                            }
+                        }
+                    }
+                    onObjectAdded: fontMenu.insertItem(index, object)
+                }
+            }
 
+        }
+        Menu{
+            title: qsTr("Settings")
+            MenuItem { text: qsTr("Set/change password"); onTriggered: setPasswordDialog.visible = true }
         }
     }
     Dialog{
@@ -484,9 +518,11 @@ ApplicationWindow {
 
             }
             TextArea{
+        TextArea{
                 id: noteView
                 property bool needSaving: false
                 font.family: fontSelectBox.currentText
+                font.family: settings.fontFamily
                 font.pointSize: 14
                 text: notesView.currentNoteText
                 Layout.fillWidth: true
