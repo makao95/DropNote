@@ -469,16 +469,16 @@ ApplicationWindow {
                             anchors.fill: parent
                             onClicked: {
                                 //ugly, but for some reason I have to call update at the end
-                                    var pId = notesView.currentNoteId;
-                                    var pText = noteView.text;
-                                    var pTitle = noteTitle.text;
-                                    notesView.currentIndex = index;
-                                    notesView.currentNoteText = text_data;
-                                    notesView.currentNoteTitle = title;
-                                    notesView.currentNoteId = id;
-                                    if(noteView.needSaving){
-                                        notesModel.update(pId, pTitle, pText);
-                                    }
+                                var pId = notesView.currentNoteId;
+                                var pText = noteView.text;
+                                var pTitle = noteTitle.text;
+                                notesView.currentIndex = index;
+                                notesView.currentNoteText = text_data;
+                                notesView.currentNoteTitle = title;
+                                notesView.currentNoteId = id;
+                                if(noteView.needSaving){
+                                    notesModel.update(pId, pTitle, pText);
+                                }
                             }
                             hoverEnabled: true
                         }
