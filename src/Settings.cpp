@@ -56,7 +56,7 @@ void Settings::setValue(QString name, QVariant value){
     query.bindValue(":value", value);
     query.bindValue(":name", name);
     if(!query.exec())
-        qDebug() << "Dupa" << query.lastError().text();
+        qDebug() << query.lastError().text();
     qDebug() << sqlite::getLastExecutedQuery(query);
 
 }
