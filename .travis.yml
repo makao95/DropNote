@@ -9,6 +9,7 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq gcc-6 qt4-qmake qt56-meta-full
   - export CXX="g++-6"
+  - export QT_SELECT=opt-qt56
 
 script:
   - qmake DropNote.pro
